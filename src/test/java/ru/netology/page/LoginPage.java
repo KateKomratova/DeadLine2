@@ -34,6 +34,12 @@ public class LoginPage {
                 .shouldHave(text("Ошибка! Неверно указан логин или пароль"), Duration.ofSeconds(15));
     }
 
+    public void blockedInvalidPassword(DataHelper.AuthInfo authInfo) {
+        getAuthInfoLogin(authInfo);
+        errorMessage.shouldBe(visible)
+                .shouldHave(text("Превышено количество попыток ввода пароля! Система заблокирована!"), Duration.ofSeconds(15));
+    }
+
     public void cleanField() {
         loginField.doubleClick().sendKeys(Keys.chord(Keys.COMMAND, "A"), Keys.DELETE);
         passwordField.doubleClick().sendKeys(Keys.chord(Keys.COMMAND, "A"), Keys.DELETE);

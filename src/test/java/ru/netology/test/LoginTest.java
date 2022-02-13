@@ -1,7 +1,6 @@
 package ru.netology.test;
 
 import com.codeborne.selenide.Configuration;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,8 +14,7 @@ public class LoginTest {
     @BeforeEach
     public void setUp() {
         Configuration.headless = true;
-        WebDriverManager.chromedriver().browserVersion("97").setup();
-        open("http://0.0.0.0:9999");
+        open("http://localhost:9999");
     }
 
     @AfterEach
@@ -48,7 +46,7 @@ public class LoginTest {
         loginPage.cleanField();
         loginPage.invalidLoginAndPassword(authInfo);
         loginPage.cleanField();
-        loginPage.invalidLoginAndPassword(authInfo);
+        loginPage.blockedInvalidPassword(authInfo);
 
     }
 
